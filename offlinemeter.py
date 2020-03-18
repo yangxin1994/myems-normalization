@@ -109,10 +109,6 @@ def calculate_hourly(logger):
                 if config.utc_offset[0] == '-':
                     timezone_offset = -timezone_offset
 
-                # get production time offset in minutes
-                start_production_time_offset = int(config.start_production_time_local[0:2]) * 60 + \
-                    int(config.start_production_time_local[3:5])
-
                 for row in ws.iter_rows(min_row=3, max_row=1024, min_col=1, max_col=34):
                     offline_meter_data = dict()
                     offline_meter_data['offline_meter_id'] = None
@@ -145,9 +141,7 @@ def calculate_hourly(logger):
                                 # invalid date and go to next cell in this row until reach max_col
                                 continue
 
-                            offline_datetime_utc = offline_datetime - \
-                                timedelta(minutes=timezone_offset) + \
-                                timedelta(minutes=start_production_time_offset)
+                            offline_datetime_utc = offline_datetime - timedelta(minutes=timezone_offset)
 
                             if cell.value is None:
                                 # if the cell is empty then stop at that day
