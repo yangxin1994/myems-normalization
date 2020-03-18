@@ -31,10 +31,6 @@ minutes_to_clean = 30
 # format string: '%Y-%m-%d %H:%M:%S'
 start_datetime_utc = '2019-12-31 16:00:00'
 
-# indicates from when ( in local timezone) of the day to calculate
-# working days and offline meters
-start_production_time_local = '00:00:00'
-
 # the number of worker processes in parallel for meter and virtual meter
 # the pool size depends on the computing performance of the database server and the analysis server
 pool_size = 5
