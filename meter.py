@@ -36,7 +36,8 @@ def calculate_hourly(logger):
         print("Connected to the MyEMS System Database")
 
         try:
-            cursor_system_db.execute(" SELECT m.id, m.name, p.id as point_id, p.units "
+            cursor_system_db.execute(" SELECT m.id, m.name, m.hourly_low_limit, m.hourly_high_limit, "
+                                     "        p.id as point_id, p.units "
                                      " FROM tbl_meters m, tbl_meters_points mp, tbl_points p "
                                      " WHERE m.id = mp.meter_id "
                                      "       AND mp.point_id = p.id "
@@ -52,8 +53,10 @@ def calculate_hourly(logger):
             for row in rows_meters:
                 meta_result = {"id": row[0],
                                "name": row[1],
-                               "point_id": row[2],
-                               "units": row[3]}
+                               "hourly_low_limit": row[2],
+                               "hourly_high_limit": row[3],
+                               "point_id": row[4],
+                               "units": row[5]}
 
                 meter_list.append(meta_result)
 
@@ -377,7 +380,14 @@ def worker(meter):
             if initial_maximum <= 0.1:
                 increment = 0.0
 
-            # todo: check the high limit of increment
+            # check with hourly low limit
+            if increment < meter['hourly_low_limit']:
+                increment = 0.0
+
+            # check with hourly high limit
+            # NOTE: this method may cause the lose of energy consumption in this time slot
+            if increment > meter['hourly_high_limit']:
+                increment = 0.0
 
             meta_data = {'start_datetime_utc': current_datetime_utc,
                          'actual_value': increment}

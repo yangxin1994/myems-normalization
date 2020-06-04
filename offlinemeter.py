@@ -236,7 +236,7 @@ def calculate_hourly(logger):
                                                 start_datetime_utc.isoformat(),
                                                 end_datetime_utc.isoformat()))
                                 cnx.commit()
-
+                                # todo: check with hourly low limit and hourly high limit
                                 add_values = (" INSERT INTO tbl_offline_meter_hourly "
                                               "             (offline_meter_id, start_datetime_utc, actual_value) "
                                               " VALUES  ")

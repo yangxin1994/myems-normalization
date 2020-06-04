@@ -19,45 +19,73 @@ openpyxl
 
 
 ### Installation
-    1. Install MySQL Connector
+
+Download and install MySQL Connector:
 ```
-    $ pip3 install mysql-connector-python
+    $ cd ~/tools
+    $ wget https://dev.mysql.com/get/Downloads/Connector-Python/mysql-connector-python-8.0.20.tar.gz
+    $ tar xzf mysql-connector-python-8.0.20.tar.gz
+    $ cd ~/tools/mysql-connector-python-8.0.20
+    $ sudo python3 setup.py install
 ```
-    2. Install mpmath
+
+Download and install mpmath
 ```
-   $ sudo pip3 install mpmath
+   $ cd ~/tools
+   $ git clone https://github.com/fredrik-johansson/mpmath.git
+   $ cd ~/tools/mpmath
+   $ sudo python3 setup.py install
 ```
-    3. Install SymPy
+
+Download and install SymPy
 ```
+    $ cd ~/tools
     $ git clone https://github.com/sympy/sympy.git
-    $ cd sympy
+    $ cd ~/tools/sympy
     $ sudo python3 setupegg.py develop
 ```
-    4. Install openpyxl
+
+Download and install openpyxl
 ```
-    $ sudo pip3 install openpyxl
+    $ cd ~/tools
+
+    Get the latest version of et_xmlfile from https://bitbucket.org/openpyxl/et_xmlfile/downloads/
+    $ wget https://bitbucket.org/openpyxl/et_xmlfile/get/50973a6de49c.zip
+    $  7z x 50973a6de49c.zip && mv openpyxl-et_xmlfile-50973a6de49c et_xmlfile
+
+    $ git clone https://github.com/phn/jdcal.git
+
+    Get the latest version of openpyxl from https://bitbucket.org/openpyxl/openpyxl/downloads/
+    $ wget https://bitbucket.org/openpyxl/openpyxl/get/8953233f5af2.zip
+    $ 7z x 8953233f5af2.zip && mv openpyxl-openpyxl-8953233f5af2 openpyxl
+
+    $ cd ~/tools/et_xmlfile
+    $ sudo python3 setup.py install
+    $ cd ~/tools/jdcal
+    $ sudo python3 setup.py install
+    $ cd ~/tools/openpyxl
+    $ sudo python3 setup.py install
 ```
-    5. Install myems-normalization service:
+
+Install myems-normalization service:
 ```
-    $ cd ~/myems-normalization
+    $ cd ~
+    $ git clone https://github.com/myems/myesm-normalization.git
     $ sudo cp -R ~/myems-normalization /myems-normalization
     $ cd /myems-normalization
-```
+    $ sudo git checkout master (or the release tag)
+
     Edit config.py for your project
-```
     $ sudo nano config.py
-```
-    Setup systemd configure files:
-```
+
+    Setup systemd service:
     $ sudo cp myems-normalization.service /lib/systemd/system/
-```
-    Next enable the services so they autostart at boot:
-```
-    $ sudo systemctl enable feed-normalizing.service
-```
-    Either reboot, or start the services manually:
-```
-    $ sudo systemctl start feed-normalizing.service
+
+    Enable the service:
+    $ sudo systemctl enable feed-normalization.service
+
+    Start the service:
+    $ sudo systemctl start feed-normalization.service
 ```
 
 ### References

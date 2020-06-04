@@ -1,21 +1,21 @@
 myems_system_db = {
     'user': 'root',
     'password': 'PASSWORD',
-    'host': '127.0.0.1',
+    'host': '192.168.0.1',
     'database': 'myems_system_db',
 }
 
 myems_energy_db = {
     'user': 'root',
     'password': 'PASSWORD',
-    'host': '127.0.0.1',
+    'host': '192.168.0.1',
     'database': 'myems_energy_db',
 }
 
 myems_historical_db = {
     'user': 'root',
     'password': 'PASSWORD',
-    'host': '127.0.0.1',
+    'host': '192.168.0.1',
     'database': 'myems_historical_db',
 }
 
