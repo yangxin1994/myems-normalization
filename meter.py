@@ -174,8 +174,8 @@ def worker(meter):
         print(error_string)
         return error_string
 
-    print("start_datetime_utc: " + start_datetime_utc.isoformat()
-          + "end_datetime_utc: " + end_datetime_utc.isoformat())
+    print("start_datetime_utc: " + start_datetime_utc.isoformat()[0:19]
+          + "end_datetime_utc: " + end_datetime_utc.isoformat()[0:19])
 
     ####################################################################################################################
     # Step 2: Get raw data from historical database between start_datetime_utc and end_datetime_utc
@@ -405,7 +405,7 @@ def worker(meter):
 
             for meta_data in normalized_values:
                 add_values += " (" + str(meter['id']) + ","
-                add_values += "'" + meta_data['start_datetime_utc'].isoformat() + "',"
+                add_values += "'" + meta_data['start_datetime_utc'].isoformat()[0:19] + "',"
                 add_values += str(meta_data['actual_value']) + "), "
             # trim ", " at the end of string and then execute
             cursor_energy_db.execute(add_values[:-2])
