@@ -3,6 +3,7 @@ from datetime import datetime, timedelta, timezone
 import mysql.connector
 from multiprocessing import Pool
 import random
+from decimal import Decimal
 import config
 
 ########################################################################################################################
@@ -342,13 +343,13 @@ def worker(meter):
         # that means the meter is offline or all values are bad
         current_datetime_utc = start_datetime_utc
         while current_datetime_utc < end_datetime_utc:
-            normalized_values.append({'start_datetime_utc': current_datetime_utc, 'actual_value': 0.0})
+            normalized_values.append({'start_datetime_utc': current_datetime_utc, 'actual_value': Decimal(0.0)})
             current_datetime_utc += timedelta(minutes=config.minutes_to_count)
     else:
-        maximum = 0
+        maximum = Decimal(0.0)
         if energy_value_just_before_start is not None and \
                 len(energy_value_just_before_start) > 0 and \
-                energy_value_just_before_start['actual_value'] > 0.0:
+                energy_value_just_before_start['actual_value'] > Decimal(0.0):
             maximum = energy_value_just_before_start['actual_value']
 
         current_datetime_utc = start_datetime_utc
@@ -366,7 +367,7 @@ def worker(meter):
                     break
 
             # get the energy increment one by one in current time slot
-            increment = 0.0
+            increment = Decimal(0.0)
             # maximum should be equal to the maximum value of last time here
             for index in range(len(current_energy_values)):
                 current_energy_value = current_energy_values[index]
@@ -377,17 +378,17 @@ def worker(meter):
             # omit huge initial value for a new meter
             # or omit huge value for a recovered meter with zero values during failure
             # NOTE: this method may cause the lose of energy consumption in this time slot
-            if initial_maximum <= 0.1:
-                increment = 0.0
+            if initial_maximum <= Decimal(0.1):
+                increment = Decimal(0.0)
 
             # check with hourly low limit
             if increment < meter['hourly_low_limit']:
-                increment = 0.0
+                increment = Decimal(0.0)
 
             # check with hourly high limit
             # NOTE: this method may cause the lose of energy consumption in this time slot
             if increment > meter['hourly_high_limit']:
-                increment = 0.0
+                increment = Decimal(0.0)
 
             meta_data = {'start_datetime_utc': current_datetime_utc,
                          'actual_value': increment}
