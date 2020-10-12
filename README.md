@@ -71,9 +71,9 @@ Install myems-normalization service:
 ```
     $ cd ~
     $ git clone https://github.com/myems/myesm-normalization.git
-    $ sudo cp -R ~/myems-normalization /myems-normalization
+    $ sudo cp -r ~/myems-normalization /myems-normalization
     $ cd /myems-normalization
-    $ sudo git checkout master (or the release tag)
+    $ sudo git checkout master (or other release tag)
 
     Edit config.py for your project
     $ sudo nano config.py

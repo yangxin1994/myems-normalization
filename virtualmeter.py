@@ -161,8 +161,8 @@ def worker(virtual_meter):
             cnx_energy_db.close()
         return "it's too early to calculate" + " for '" + virtual_meter['name'] + "'"
 
-    print("start_datetime_utc: " + start_datetime_utc.isoformat()
-          + "end_datetime_utc: " + end_datetime_utc.isoformat())
+    print("start_datetime_utc: " + start_datetime_utc.isoformat()[0:19]
+          + "end_datetime_utc: " + end_datetime_utc.isoformat()[0:19])
 
     ############################################################################################################
     # Step 2: parse the expression and get all meters, virtual meters, and
@@ -454,7 +454,7 @@ def worker(virtual_meter):
 
             for meta_data in normalized_values:
                 add_values += " (" + str(virtual_meter['id']) + ","
-                add_values += "'" + meta_data['start_datetime_utc'].isoformat() + "',"
+                add_values += "'" + meta_data['start_datetime_utc'].isoformat()[0:19] + "',"
                 add_values += str(meta_data['actual_value']) + "), "
             print("add_values:" + add_values)
             # trim ", " at the end of string and then execute
