@@ -6,6 +6,7 @@
 
 This service is a component of MyEMS and it normalizes energy data in historical database.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9c4a70cf88ab410d91294bf32ef6f371)](https://app.codacy.com/gh/myems/myems-normalization?utm_source=github.com&utm_medium=referral&utm_content=myems/myems-normalization&utm_campaign=Badge_Grade)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/myems/myems-normalization/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/myems/myems-normalization/?branch=master)
 
 
