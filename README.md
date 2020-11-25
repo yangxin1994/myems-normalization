@@ -6,7 +6,7 @@
 
 This service is a component of MyEMS and it normalizes energy data in historical database.
 
-
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/myems/myems-normalization/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/myems/myems-normalization/?branch=master)
 
 
 ### Prerequisites
