@@ -3,13 +3,15 @@ myems_system_db = {
     'password': '!MyEMS1',
     'host': '127.0.0.1',
     'database': 'myems_system_db',
+    'port': 3306,
 }
 
 myems_energy_db = {
     'user': 'root',
     'password': '!MyEMS1',
-    'host': '192.168.0.1',
+    'host': '127.0.0.1',
     'database': 'myems_energy_db',
+    'port': 3306,
 }
 
 myems_historical_db = {
@@ -17,6 +19,7 @@ myems_historical_db = {
     'password': '!MyEMS1',
     'host': '127.0.0.1',
     'database': 'myems_historical_db',
+    'port': 3306,
 }
 
 # indicates in how many minutes to normalize energy consumption
